@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <a href="https://www.google.com.br/"
+            target="_blank"
+            @click.prevent="previnirComportamentoPadrao()"
+        >
+        Link
+        </a>
+        Mensagem: {{msg}}
+
+        <br><hr><br>
+        
+        <button @click.once="executarUmaVez"> Contador de cliques </button>
+        <p>Cliques {{cliques}}</p>
+
+        <br><hr><br>
+
+        <form @submit.prevent.once="previnirUmaVez">
+            <button type="submit"> Enviar </button>
+            <p>mensagem: {{mensagem}}</p>
+        </form>
+
+        <br><hr><br>
+
+        <input type="text" @keyup='capturandoTeclas($event)'>
+        <p>Teclas {{teclas}}</p>
+
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+                cliques: 0,
+                mensagem: '',
+                teclas: ''
+            },
+            methods: {
+                previnirComportamentoPadrao(){
+                    this.msg = 'Comportamento padrão ativado'
+                },
+                executarUmaVez(){
+                    this.cliques ++;
+                },
+                previnirUmaVez(){
+                    this.mensagem = 'previnindo o comportamento padrão'
+                },
+                capturandoTeclas(event){
+                    this.teclas += event.key
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
